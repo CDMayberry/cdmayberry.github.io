@@ -4,6 +4,12 @@ html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+.avatar {
+    border-radius: 50%;
+    background-color: black !important;
+    border: black !important;
+}
+
 a, .btn-link {
     color: #0366d6;
 }
