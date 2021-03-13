@@ -1,0 +1,71 @@
+﻿@page "/games"
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Game Development: Battle Mech Game</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h2>About</h2>
+            My current game project is inspired by the old xbox game Mech Assault. I grew up with a bunch of the BattleTech games like Mech Warrior, Mech Commander, and Mech Assault. 
+            After completing my Games 3 class in college, Unity with networked game dev on consoles, I wanted to start a new project of my own and decided to base it off of one of these games.
+            <br/><br/>
+            While Mech Commander is the one I'd personally love to make, and I made a couple of attempts early on, Mech Assault gameplay is probably the simpliest of the three 
+            and I decided that simplicity would be the best place to start for someone new to game dev. I am on the third iteration of this game, the original was written back in college.
+            <br/><br/>
+            <h3>Original</h3>
+            The first iteration was very messy, at the time I was new to Unity and even newer to networked game development. 
+            I was able to create a small arena multiplayer match and played a few games with friends via LAN, but it made a lot of assumptions that prevented me from expanding it much further,
+            relegating this version to being simply a fun experiment. A couple of my old dev logs can be found on <a href="https://youtube.com/playlist?list=PLsXOh8EQgdelxHm6I13Z4KGFUTRIwKHsK" target="_blank">youtube</a>, 
+            and a zip of the last build I saved can downloaded from my <a href="https://www.dropbox.com/s/e4zim4xf1jrkltc/BattleMechs.zip?dl=1" target="_blank">dropbox</a>. It's messy and the minimal UI is clunky, 
+            but I'm still very happy with how far I got with it.
+            <br/><br/>
+            <h3>Current Version</h3>
+            Over the years since college I've made a bunch of small prototypes to try to fill in the gaps of what I was missing for the first version. Things I was missing included how to handle persistent player data 
+            across scenes, custom tools for defining mechs, variants, weapons, and stats without making code changes, and a deeper understanding of networking. At this point, thanks to experiments and a few devs I follow,
+            I've been able to get to a point where I feel like I have the tools needed or have the know how to code them myself.
+            <br/><br/>
+            <h4>Persistent Player Data and Cross Scene Interactions</h4>
+            Early on this was a major problem. Most all Unity tutorials out there show how to code for individual scenes, but often in games scenes need to be aware of some amount of persistent data that is brought in from the outside. 
+            My prototypes when designed as standalone scenes tended to fall apart when I tried to expand to multiple scenes games, IE try to integrate it into a gameplay loop of main menu, mission selection, in-game.
+
+            <br/><br/>
+            <h4>Customizeable Mechs and Designer Tools</h4>
+            My goal was to have a system wherein I could create data structures for mechs and weapons in the designer, which could be then read and selected by a player based on the mission selected.
+            I've made a number of prototypes to try to find a good way for managing mechs and weapons. I considered loading data from spreadsheets, which worked alright but it didn't provide in editor tooling. 
+            The next attempt was using Unity's scriptable objects. This was better, by default it was integrated into the editor, but then the data wasn't accessible outside of unity.
+            Finally, a <a href="https://twitter.com/why485" target="_blank">dev I follow on twitter</a> got me started on the right track. While working on his own game he demoed <a href="https://github.com/brihernandez/TinyXWingClean">code</a> 
+            for defining and loading data based on JSON. I decided to build off his demo and create a custom Unity designer to wrap around the JSON to make creating and modifying data a breeze.
+            <br/> 
+            <video width="720" height="400" controls>
+                <source src="images/Hangar2.webm" type="video/webm">
+                Your browser does not support the video tag.
+            </video>
+            <!--<img src="images/Hangar2.webm" width="720" height="400" alt="Mech Hangar">-->
+            <br/><br/>
+            <h4>Networking</h4>
+            This was (and still is) the trickiest part. I made the original using UNet, Unity's now deprecated networking API. At the time it blew me away with how easy it was to network a game, but as time went on
+            I learned more and more the flaws of UNet. This came to a head when I realized I needed some kind of tick based system to ensure player input and state were handled at discrete time intervals, but UNet, 
+            and more recently the OSS projects based on it, only have a simple float field that approximately syncronizes time. This could work for simpler games or turn-based games, but I wanted to be able to handle
+            more complex logic and this was not cutting it.
+            <br/><br/>
+            I decided to experiment with building my own tick system in Mirror, the successor to UNet. I did a lot of research, from Gabriel Gambetta's articles on <a href="https://www.gabrielgambetta.com/client-server-game-architecture.html" target="_blank">Fast-Paced Multiplayer</a> 
+            to GDC talks about networking in <a href="https://www.youtube.com/watch?v=h47zZrqjgLc">Halo: Reach</a> and <a href="https://www.youtube.com/watch?v=W3aieHjyNvw" target="_blank">Overwatch</a>. Eventually I got a prototype up, 
+            what is now a side project called <NavLink href="projects">MirrorState</NavLink>. I have been able to get state syncronized to discrete ticks and allow for client side prediction, all with designers for defining states and player prediction.
+            
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+        </div>
+    </div>
+</div>
