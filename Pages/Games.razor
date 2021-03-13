@@ -35,8 +35,13 @@
             <br/><br/>
             <h4>Persistent Player Data and Cross Scene Interactions</h4>
             Early on this was a major problem. Most all Unity tutorials out there show how to code for individual scenes, but often in games scenes need to be aware of some amount of persistent data that is brought in from the outside. 
-            My prototypes when designed as standalone scenes tended to fall apart when I tried to expand to multiple scenes games, IE try to integrate it into a gameplay loop of main menu, mission selection, in-game.
-
+            My prototypes, designed as standalone scenes, tended to fall apart when I tried to expand to multiple scenes games, IE try to integrate it into a gameplay loop of main menu, mission selection, in-game.
+            Finally with this version, I started from the menu, then mission screen, then the mission itself, and back.
+            <br/> 
+            <video width="720" height="400" controls>
+                <source src="images/FullGameLoop.webm" type="video/webm">
+                Your browser does not support the video tag.
+            </video>
             <br/><br/>
             <h4>Customizeable Mechs and Designer Tools</h4>
             My goal was to have a system wherein I could create data structures for mechs and weapons in the designer, which could be then read and selected by a player based on the mission selected.
