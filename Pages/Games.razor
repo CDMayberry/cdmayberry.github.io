@@ -37,7 +37,7 @@
             Early on this was a major problem. Most all Unity tutorials out there show how to code for individual scenes, but often in games scenes need to be aware of some amount of persistent data that is brought in from the outside the current scene. 
             My prototypes, designed as standalone scenes, tended to fall apart when I tried to expand to multiple scenes games, IE try to integrate it into a gameplay loop of main menu, mission selection, in-game.
             Finally with this version, I started from the menu, then mission screen, then the mission itself, and back.
-            <br/> 
+            <br/> <br /> <br /><br />
             <video width="720" height="400" controls>
                 <source src="images/FullGameLoop.webm" type="video/webm">
                 Your browser does not support the video tag.
@@ -50,7 +50,7 @@
             for instance if I wanted players to be able to mod the stats or for otherwise change settings without needing to open Unity.
             Finally, a <a href="https://twitter.com/why485" target="_blank">dev I follow on twitter</a> got me started on the right track. While working on his own game he demoed <a href="https://github.com/brihernandez/TinyXWingClean">code</a> 
             for defining and loading data based on JSON. I decided to build off his demo and create a custom Unity designer to wrap around the JSON to make creating and modifying data a breeze.
-            <br/> 
+            <br/> <br /><br />
             <video width="720" height="400" controls>
                 <source src="images/Hangar2.webm" type="video/webm">
                 Your browser does not support the video tag.
@@ -66,15 +66,15 @@
             I decided to experiment with building my own tick system in Mirror, the successor to UNet. I did a lot of research, from Gabriel Gambetta's articles on <a href="https://www.gabrielgambetta.com/client-server-game-architecture.html" target="_blank">Fast-Paced Multiplayer</a> 
             to GDC talks about networking in <a href="https://www.youtube.com/watch?v=h47zZrqjgLc">Halo: Reach</a> and <a href="https://www.youtube.com/watch?v=W3aieHjyNvw" target="_blank">Overwatch</a>. Eventually I got a prototype up, 
             what is now a side project called <NavLink href="projects">MirrorState</NavLink>. I have been able to get state synchronized to discrete ticks and allow for client side prediction, all with designers for defining states and player prediction.
-            
+            <br/>
             <video width="720" height="400" controls>
                 <source src="images/MultiplayerBattleMechs.webm" type="video/webm">
                 Your browser does not support the video tag.
             </video>
-            <br/>
+            <br/><br />
             This worked far better than Mirror alone, though it wasn't without issues. It still needs a bunch of work in regards to ticks, buffering, prediction, and rollback, and would be awhile before I could get my own prototype to a releasable state using it. 
-            Though I greatly enjoy researching and learning about networking in video games, I do also want to release a game. In an effort to separate my research project from my game project, I plan to remove MirrorState and swap it out with 
-            <a href="https://doc.photonengine.com/en-us/fusion/current/getting-started/fusion-intro" target="_blank">Photon Fusion</a> once it releases. Then I can work on MirrorState as a separate side-project while pushing my game forward using Fusion.
+            Though I greatly enjoy researching and learning about networking in video games, I do also want to release a game. In an effort to separate my research project from my game project, I decided to remove MirrorState and swap it out with 
+            <a href="https://doc.photonengine.com/en-us/fusion/current/getting-started/fusion-intro" target="_blank">Photon Fusion</a>. I plan to work intermittently on MirrorState while continuing to develop my game using Fusion.
             <br/><br/>
             <br/><br/>
             <br/><br/>
