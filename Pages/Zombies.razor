@@ -1,0 +1,54 @@
+﻿@page "/zombies"
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Game Development: Bullet Hell</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h2>About</h2>
+            My current game project, a online, co-op bullet hell taking inspiration from Enter the Gungeon and Call of Duty's Zombies game mode. The players will need to work to complete a series of objectives while fighting off ever increasing waves of enemies.
+            
+            Below are some of the design challenges I've run into and where I'm at with them.
+            <br /><br />
+
+            <h4>Bullets</h4>
+            The biggest problem I faced and will continue to face, networking all of the bullets. My current solution does not network the individual spawns but instead networks the tick of the trigger pull,
+            client's then upon detecting a new trigger pull can rewind, spawn the bullets at the correct position, then fast-forward them into their own predicted time.
+            This is to ensure that players can properly dodge bullets and have that timed properly when the client's input reaches the server. This is not without issues and I plan another rework, but it is acceptable for
+            the current state of the game.
+
+            Below is a playtest with the current version, V3, of the bullets.
+            <br /> <br />
+            <video width="720" height="400" controls>
+                <source src="images/Playtest2Smaller.webm" type="video/webm">
+                Your browser does not support the video tag.
+            </video>
+            <br /><br />
+
+            <h4>Inventory</h4>
+            Players need to be able to have their own individual inventory, and additionally have items that the entire team can share. To that end, all of the scriptables that need to be networked, such as Items or Guns, are cached in a lookup dictionary with an index on first load.
+            To sync any scriptable all I need to do is send a byte and any client can lookup the scriptable associated with that index as need. With that in place I can use a simple byte lookup to update and track a player or team's inventory.
+
+            <br /> <br />
+            <video width="720" height="400" controls>
+                <source src="images/InventoryWIP.webm" type="video/webm">
+                Your browser does not support the video tag.
+            </video>
+            <br /><br />
+
+            <br /><br />
+            <br /><br />
+            <br /><br />
+            <br /><br />
+        </div>
+    </div>
+</div>
