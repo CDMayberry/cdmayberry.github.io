@@ -15,8 +15,8 @@
     <div class="row">
         <div class="col">
             <h2>About</h2>
-            This project is inspired by the old Xbox game Mech Assault. I grew up with a bunch of the BattleTech games like Mech Warrior, Mech Commander, and Mech Assault.
-            After completing my Games 3 class in college, Unity with networked game dev on consoles, I wanted to start a new project of my own and chose to base it off Mech Assault.
+            This project is inspired by the old Xbox game Mech Assault. I grew up with a bunch of the BattleTech games like Mech Warrior, Mech Commander, and Mech Assault and had always wanted to make something in that vein.
+            After completing my Games 3 class in college, Unity with networked game dev on consoles, I decided to start a new project of my own and chose to base it off Mech Assault.
             @*
             <br /><br />
             While Mech Commander is the one I'd personally love to make, and I made a couple of attempts early on, Mech Assault gameplay is probably the simplest of the three
@@ -50,7 +50,7 @@
             The next attempt was using Unity's scriptable objects. This was better, by default it was integrated into the editor, but then the data wasn't accessible outside of unity,
             for instance if I wanted players to be able to mod the stats or for otherwise change settings without needing to open Unity.
             Finally, a <a href="https://twitter.com/why485" target="_blank">dev I follow on twitter</a> got me started on the right track. While working on his own game he demoed <a href="https://github.com/brihernandez/TinyXWingClean">code</a>
-            for defining and loading data based on JSON. I decided to build off his demo and create a custom Unity designer to wrap around the JSON to make creating and modifying data a breeze.
+            for defining and loading data based on JSON. I decided to build off his demo; creating a custom Unity designer to wrap around the JSON to make creating and modifying data a breeze.
             <br /> <br /><br />
             <video width="720" height="400" controls>
                 <source src="images/Hangar2.webm" type="video/webm">
@@ -59,7 +59,7 @@
             <!--<img src="images/Hangar2.webm" width="720" height="400" alt="Mech Hangar">-->
             <br /><br />
             <h4>Networking</h4>
-            This was (and still is) the trickiest part. I built the original prototype off of UNet, Unity's now deprecated networking API. At the time it blew me away with how easy it was to network a game, but as I learned more about networking went on
+            This was, and still is, the trickiest part. I built the original prototype off of UNet, Unity's now deprecated networking API. At the time it blew me away with how easy it was to network a game, but as I learned more about networking went on
             I discovered more and more the flaws of UNet. This came to a head when I realized I needed some kind of tick based system to ensure player input and state were handled at discrete time intervals, but UNet and it's derivatives
             only have a simple float field that approximately synchronizes time. This could work for simpler games or turn-based games, but I wanted to be able to handle more complex logic and this was not cutting it.
             <br /><br />
