@@ -1,0 +1,88 @@
+﻿@page "/mechs"
+
+<PageTitle>Mechs</PageTitle>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Game Development: Battle Mech Game</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h2>About</h2>
+            This project is inspired by the old Xbox game Mech Assault. I grew up with a bunch of the BattleTech games like Mech Warrior, Mech Commander, and Mech Assault and had always wanted to make something in that vein.
+            After completing my Games 3 class in college, Unity with networked game dev on consoles, I decided to start a new project of my own and chose to base it off Mech Assault.
+            @*
+            <br /><br />
+            While Mech Commander is the one I'd personally love to make, and I made a couple of attempts early on, Mech Assault gameplay is probably the simplest of the three
+            and I decided that simplicity would be the best place to start for someone new to game dev. I am on the third iteration of this game, the original was written back in college.
+            *@
+            <br /><br />
+            <h3>Original</h3>
+            The first iteration was very messy, at the time I was new to Unity and even newer to networked game development.
+            I was able to create a small arena multiplayer match and played a few games with friends via LAN, but it made a lot of assumptions that prevented me from expanding it much further,
+            relegating this version to being simply a fun experiment. A couple of my old dev logs can be found on <a href="https://youtube.com/playlist?list=PLsXOh8EQgdelxHm6I13Z4KGFUTRIwKHsK" target="_blank">youtube</a>,
+            and a zip of the last build I saved can downloaded from my <a href="https://www.dropbox.com/s/e4zim4xf1jrkltc/BattleMechs.zip?dl=1" target="_blank">dropbox</a>. It's messy and the minimal UI is clunky,
+            but I'm still very happy with how far I got with it.
+            <br /><br />
+            <h3>Current Version</h3>
+            Since college I've made a bunch of small prototypes to try to fill in the gaps of what I was missing for the first version. These included how to handle persistent player data
+            across scenes, custom tools for defining mechs, variants, weapons, and stats without making code changes, and a deeper understanding of networking.
+            <br /><br />
+            <h4>Persistent Player Data and Cross Scene Interactions</h4>
+            Early on this was a major problem. Most all Unity tutorials out there show how to code for individual scenes, but often in games scenes need to be aware of some amount of persistent data that is brought in from the outside the current scene.
+            My prototypes, designed as standalone scenes, tended to fall apart when I tried to expand to multiple scenes games, IE try to integrate it into a gameplay loop of main menu, mission selection, in-game.
+            Finally with this version, I started from the menu, then mission screen, then the mission itself, and back.
+            <br /> <br /> <br /><br />
+            <video width="720" height="400" controls>
+                <source src="images/FullGameLoop.webm" type="video/webm">
+                Your browser does not support the video tag.
+            </video>
+            <br /><br />
+            <h4>Customizable Mechs and Designer Tools</h4>
+            My goal was to have a system wherein I could create data structures for mechs and weapons in the designer, which could be then read and selected by a player based on the mission selected.
+            I've made a number of prototypes to try to find a good way for managing mechs and weapons. I considered loading data from spreadsheets, which worked alright but it didn't provide in editor tooling.
+            The next attempt was using Unity's scriptable objects. This was better, by default it was integrated into the editor, but then the data wasn't accessible outside of unity,
+            for instance if I wanted players to be able to mod the stats or for otherwise change settings without needing to open Unity.
+            Finally, a <a href="https://twitter.com/why485" target="_blank">dev I follow on twitter</a> got me started on the right track. While working on his own game he demoed <a href="https://github.com/brihernandez/TinyXWingClean">code</a>
+            for defining and loading data based on JSON. I decided to build off his demo; creating a custom Unity designer to wrap around the JSON to make creating and modifying data a breeze.
+            <br /> <br /><br />
+            <video width="720" height="400" controls>
+                <source src="images/Hangar2.webm" type="video/webm">
+                Your browser does not support the video tag.
+            </video>
+            <!--<img src="images/Hangar2.webm" width="720" height="400" alt="Mech Hangar">-->
+            <br /><br />
+            <h4>Networking</h4>
+            This was, and still is, the trickiest part. I built the original prototype off of UNet, Unity's now deprecated networking API. At the time it blew me away with how easy it was to network a game, but as I learned more about networking went on
+            I discovered more and more the flaws of UNet. This came to a head when I realized I needed some kind of tick based system to ensure player input and state were handled at discrete time intervals, but UNet and it's derivatives
+            only have a simple float field that approximately synchronizes time. This could work for simpler games or turn-based games, but I wanted to be able to handle more complex logic and this was not cutting it.
+            <br /><br />
+            I decided to experiment with building my own tick system in Mirror, the successor to UNet. I did a lot of research, from Gabriel Gambetta's articles on <a href="https://www.gabrielgambetta.com/client-server-game-architecture.html" target="_blank">Fast-Paced Multiplayer</a>
+            to GDC talks about networking in <a href="https://www.youtube.com/watch?v=h47zZrqjgLc">Halo: Reach</a> and <a href="https://www.youtube.com/watch?v=W3aieHjyNvw" target="_blank">Overwatch</a>. Eventually I got a prototype up,
+            what is now a side project called <NavLink href="projects">MirrorState</NavLink>. It has as a psuedo tick system built on top of Mirror, with editor support. This fixed a number of issues synchronization issues I was running into.
+            <br />
+            <video width="720" height="400" controls>
+                <source src="images/MultiplayerBattleMechs.webm" type="video/webm">
+                Your browser does not support the video tag.
+            </video>
+            <br /><br />
+            The design still has a number of issues and isn't a true tick system, relying on too many shortcuts using Mirror, but it was still a major jump in my understanding of networking. 
+            It needs a bunch of work in regards to ticks, buffering, prediction, and rollback, and would be awhile before I could get my own prototype to a releasable state using it.
+            Though I greatly enjoy researching and learning about networking in video games, I do also want to release a game. 
+            In an effort to separate my research project from my game project, I decided to remove MirrorState and swap it out with
+            <a href="https://doc.photonengine.com/en-us/fusion/current/getting-started/fusion-intro" target="_blank">Photon Fusion</a>. I plan to occasionally fiddle with MirrorState while continuing to develop using Fusion.
+            <br /><br />
+            <br /><br />
+            <br /><br />
+            <br /><br />
+            <br /><br />
+        </div>
+    </div>
+</div>

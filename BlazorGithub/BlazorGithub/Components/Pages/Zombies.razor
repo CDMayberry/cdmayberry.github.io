@@ -1,0 +1,72 @@
+﻿@page "/zombies"
+
+<PageTitle>Zombies</PageTitle>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Game Development: Bullet Hell</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <hr />
+        </div>
+    </div>
+    <div class="row" style="padding-bottom: 3rem">
+        <div class="col">
+            <h2>About</h2>
+            An online, co-op bullet hell taking inspiration from Enter the Gungeon and Call of Duty's Zombies game mode. 
+            The players will need to work to complete a series of objectives while fighting off ever-increasing waves of enemies.
+            This game has gone through multiple iterations, starting on as a basic java game and then later moving to Unity. Within Unity I've tried it on multiple networking stacks, from UNet to Mirror to Photon Fusion to finally Photon Quantum.
+            
+            <br /><br />
+            <h3>Fusion</h3>
+            The game really started to take shape during the Fusion version. It solved a number of issues that UNet/Mirror simply didn't have the tools or even the foundation to handle. It wasn't the final step, 
+            but it was a great stepping stone and I learned quite a lot of about netcode during this time.
+
+            <h4>Bullets</h4>
+            The biggest problem I faced in previous networking stacks was networking the projectiles. My initial solution did not network the individual spawns but instead networks the tick of the trigger pull,
+            client's then upon detecting a new trigger pull can rewind, spawn the bullets at the correct position, then fast-forward them into their own predicted time.
+            This was to ensure that players can properly dodge bullets and have that timed properly when the client's input reaches the server. This was a naive approach with a number of issues and eventually a rework would follow, 
+            but it was acceptable for the state of the game at the time it.
+
+            Below is a PvP playtest with the last version of these bullets.
+            <br /> <br />
+            <video width="720" height="400" controls>
+                <source src="images/PlayTest2Smaller.webm" type="video/webm">
+                Your browser does not support the video tag.
+            </video>
+            <br /><br />
+            @* Describe what the sample provided or what it improved upon. *@
+            Eventually the maker's of Photon Fusion released an advanced projectiles sample, and I integrated much of the projectile sample into my weapon code.
+            Bullets by and large are now only visual representations. Each weapon tracks its own bullets in a networked array, which allows bullets to be both used with the predict/rollback system.
+            Though it could use some optimizations for spawning bullets, it was a big improvement over the initial bullet design, but it still had some issues with prediction.
+            @* Add a video of latest version of bullets. *@
+            <br/><br/>
+
+            <h4>Inventory</h4>
+            Players need to be able to have their own individual inventory, and additionally have items that the entire team can share. 
+            To that end, all the scriptables that need to be networked, such as Items or Guns, are cached in a lookup dictionary with an index on first load.
+            To sync any scriptable all I need to do is send a byte and any client can look up the scriptable associated with that index as need. 
+            With that in place I can use a simple byte lookup to update and track a player or team's inventory.
+
+            <br /> <br />
+            <video width="720" height="400" controls>
+                <source src="images/InventoryWIP.webm" type="video/webm">
+                Your browser does not support the video tag.
+            </video>
+
+            <h3>Quantum</h3>
+            I made good progress with Fusion version, but prediction issues were starting to crop up in a lot of places; some were design flaws, some were inherit issues with trying to do prediction in a bullet hell.
+            
+            Around this time the Photon team made their Quantum Engine free for hobbyist. Quantum was a deterministic, ECS-based engine that ran the entire simulation within itself, and used Unity to render it. 
+            After seeing a bunch of discussion on bullet hells and prediction from different members of the photon team, it seemed like a deterministic engine greatly suited a bullet hell. 
+            I decided to try a 2-week experiment: See how much I could rebuild in that time and determine if the cost of switching was worth the lost development.
+            
+            After 2 weeks of on and off coding, I had rebuilt the equivalent of 3 months of work on the Fusion version, and had the game running to the point that the PvP was almost on par with the above Fusion playtests. 
+            Some of the time difference came down to having already done this in the Fusion version, but even then the ease by which I could port and then add more functionality can't be understated. The determinism solved my issues with prediction,
+            and ECS as a whole just clicked with me. Other systems that took 2 weeks to make I was able to rebuild in 2-3 days. With such good progress, I decided to fully commit to moving my work onto Quantum.
+        </div>
+    </div>
+</div>

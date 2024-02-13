@@ -1,0 +1,91 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">cdmayberry.github.io</a>
+    </div>
+</div>
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+<div class="nav-scrollable">
+    <nav class="flex-column">
+        <div class="nav-item px-3" onclick="document.querySelector('.navbar-toggler').click()">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-person pe-2" aria-hidden="true"></span> About Me
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3" @onclick="ToggleGamesMenu">
+            <NavLink class="nav-link">
+                <span class="oi @(expandSubNav ? "oi-chevron-bottom" : "oi-chevron-right") pe-2" aria-hidden="true"></span> <span>Current Game Dev</span>
+            </NavLink>
+        </div>
+        @if (expandSubNav)
+        {
+            <ul>
+                <li class="games nav-item px-3" onclick="document.querySelector('.navbar-toggler').click()">
+                    <NavLink class="nav-link" href="mechs">
+                        <span>Mech Game</span>
+                    </NavLink>
+                </li>
+                <li class="games nav-item px-3" onclick="document.querySelector('.navbar-toggler').click()">
+                    <NavLink class="nav-link" href="zombies">
+                        <span>Bullet Hell</span>
+                    </NavLink>
+                </li>
+            </ul>
+        }
+
+        <div class="nav-item px-3" onclick="document.querySelector('.navbar-toggler').click()">
+            <NavLink class="nav-link" href="projects">
+                <span class="oi oi-list pe-2" aria-hidden="true"></span> Side Projects
+            </NavLink>
+        </div>
+    </nav>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+    private bool expandSubNav = false;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+    private void ToggleGamesMenu()
+    {
+        expandSubNav = !expandSubNav;
+    }
+}
+
+@*<script>
+    var navbar = {};
+    (function () {
+        var games = document.querySelector('.games');
+        var toggle = localStorage['navtoggle'];
+
+        navbar.hideGames = function() {
+            games.style.display = 'none';
+        }
+        navbar.showGames = function () {
+            games.style.display = 'block';
+        }
+
+        navbar.toggleGames = function () {
+            toggle = !toggle;
+            localStorage['navtoggle'] = toggle;
+            if (toggle) {
+                navbar.showGames();
+            }
+            else {
+                navbar.hideGames();
+            }
+        }
+
+        if (toggle) {
+            navbar.showGames();
+        }
+    })()
+</script>*@
