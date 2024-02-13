@@ -1,5 +1,8 @@
 name: 'Publish application'
-on: push
+on:
+  push:
+    branches:
+      - main  # Set a branch name to trigger deployment
 
 jobs:
   build:
@@ -25,11 +28,10 @@ jobs:
         # Publish the website
         - name: GitHub Pages action
           if: ${{ github.ref == 'refs/heads/main' }} # Publish only when the push is on master
-          uses: peaceiris/actions-gh-pages@v3.6.1
+          uses: peaceiris/actions-gh-pages@v3.9.3
           with:
             github_token: ${{ secrets.PUBLISH_TOKEN }}
             publish_branch: gh-pages
             publish_dir: dist/Web/wwwroot
             allow_empty_commit: false
-            keep_files: false
             force_orphan: true
