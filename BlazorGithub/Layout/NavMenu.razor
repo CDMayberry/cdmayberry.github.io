@@ -59,33 +59,3 @@
         expandSubNav = !expandSubNav;
     }
 }
-
-@*<script>
-    var navbar = {};
-    (function () {
-        var games = document.querySelector('.games');
-        var toggle = localStorage['navtoggle'];
-
-        navbar.hideGames = function() {
-            games.style.display = 'none';
-        }
-        navbar.showGames = function () {
-            games.style.display = 'block';
-        }
-
-        navbar.toggleGames = function () {
-            toggle = !toggle;
-            localStorage['navtoggle'] = toggle;
-            if (toggle) {
-                navbar.showGames();
-            }
-            else {
-                navbar.hideGames();
-            }
-        }
-
-        if (toggle) {
-            navbar.showGames();
-        }
-    })()
-</script>*@
