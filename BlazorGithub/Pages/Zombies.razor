@@ -22,9 +22,10 @@
             
             <br /><br />
             <h3>Fusion</h3>
-            The game really started to take shape during the Fusion version. It solved a number of issues that UNet/Mirror simply didn't have the tools or even the foundation to handle. It wasn't the final step, 
-            but it was a great stepping stone and I learned quite a lot of about netcode during this time.
-
+            The game really started to take shape during the Fusion version. It solved a number of issues that UNet/Mirror simply didn't have the tools or even the foundation to handle. It wasn't the final networking stack, 
+            but it was a great stepping stone and I learned quite a lot of about netcode during this time. Below were some of the challenges I faced.
+            
+            <br /><br />
             <h4>Bullets</h4>
             The biggest problem I faced in previous networking stacks was networking the projectiles. My initial solution did not network the individual spawns but instead networks the tick of the trigger pull,
             client's then upon detecting a new trigger pull can rewind, spawn the bullets at the correct position, then fast-forward them into their own predicted time.
@@ -57,6 +58,7 @@
                 Your browser does not support the video tag.
             </video>
 
+            <br /><br />
             <h3>Quantum</h3>
             I made good progress with Fusion version, but prediction issues were starting to crop up in a lot of places; some were design flaws, some were inherit issues with trying to do prediction in a bullet hell.
             
