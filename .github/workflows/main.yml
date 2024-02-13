@@ -23,7 +23,7 @@ jobs:
 
         # Generate the website
         - name: Publish
-          run: dotnet publish BlazorGithub/BlazorGithub/BlazorGithub.csproj -c:Release -p:GHPages=true -o dist/Web --nologo
+          run: dotnet publish BlazorGithub/BlazorGithub.csproj -c:Release -p:GHPages=true -o dist/Web --nologo
 
         # Publish the website
         - name: GitHub Pages action
