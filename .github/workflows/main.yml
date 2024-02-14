@@ -25,12 +25,6 @@ jobs:
         - name: Publish
           run: dotnet publish BlazorGithub/BlazorGithub.csproj -c:Release -p:GHPages=true -o dist/Web --nologo
 
-        - name: Rewrite base href
-          uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
-          with:
-            html_path: dist/Web/wwwroot/index.html
-            base_href: /cdmayberry.github.io/
-
         # Publish the website
         - name: GitHub Pages action
           if: ${{ github.ref == 'refs/heads/main' }} # Publish only when the push is on master
